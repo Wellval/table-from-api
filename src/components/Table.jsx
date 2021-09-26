@@ -13,6 +13,7 @@ export const Table = ({ sorts, setSorts, currentData, selectRow, selectedRow }) 
         <tbody>
             {currentData.map(obj => <tr 
                 key={obj.id + obj.firstName}
+                className={obj.id === selectedRow?.id ? "selected-row" : ""}
                 onClick={() => {
                     selectRow(obj);
                 }}

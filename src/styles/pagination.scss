@@ -1,0 +1,23 @@
+.page-button {
+    border: none;
+    background-color: rgba(225, 225, 225, 0.5);
+    color: #803737;
+    width: 40px;
+    height: 25px;
+    cursor: pointer;
+
+}
+
+.page-button-active {
+    background-color: #803737;
+    color: rgba(225, 225, 225, 0.5);
+}
+
+.prev-button, .next-button {
+    background-color: #803737;
+    color: rgba(225, 225, 225, 0.5);
+    border: none;
+    width: 60px;
+    height: 25px;
+    cursor: pointer;
+}

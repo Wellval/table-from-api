@@ -1,11 +1,17 @@
 export const ProfileInfo = ({ selectedRow }) => {
+    const infoObj = {
+        'Selected profile': `${selectedRow.firstName} ${selectedRow.lastName}`,
+        'Description': selectedRow.description,
+        'Address': selectedRow.adress.streetAddress,
+        'City': selectedRow.adress.city,
+        'State': selectedRow.adress.state,
+        'Index': selectedRow.adress.zip,
+    }
+    
     return <div className="profile-info__wrapper">
         <h2>Profile Info:</h2>
-        <p>Selected profile: {selectedRow.firstName} {selectedRow.lastName}</p>
-        <p>Description: {selectedRow.description}</p>
-        <p>Address: {selectedRow.adress.streetAddress}</p>
-        <p>City: {selectedRow.adress.city}</p>
-        <p>State: {selectedRow.adress.state}</p>
-        <p>Index: {selectedRow.adress.zip}</p>
+        {
+            Object.keys(infoObj).map(key => <p>{key}: {infoObj[key]}</p>)
+        }
     </div>
 }

@@ -20,7 +20,7 @@ function App() {
 	const { list } = useSelector(state => state.tableData);
 
 	const [currentData, setCurrentData] = useState([]);
-	const [pages, setPages] = useState(Array.apply(null, Array(Math.ceil(list.length / 20))).map(function (x, i) { return i; }));
+	const [realSize, setRealSize] = useState(0);
 	const [selectedRow, selectRow] = useState(null);
 
 	useEffect(() => {
@@ -51,18 +51,18 @@ function App() {
 		}
 
 		data = _.orderBy(data, Object.keys(sorts), Object.keys(sorts).map(x => sorts[x] ? 'asc' : 'desc'));
-		setPages(Array.apply(null, Array(Math.ceil(data.length / 20))).map(function (x, i) { return i; }));
 
 		if (newPage * pageSize >= data.length) {
 			newPage = 0;
 		}
+
+		setRealSize(data.length);
 
 		data = data.slice(newPage * pageSize, (newPage + 1) * pageSize);
 
 		setPage(newPage);
 		setCurrentData(data);
 	}, [page, sorts, filters, list]);
-
 
 	return (
 		<div className="App">
@@ -87,7 +87,8 @@ function App() {
 			<Pagination 
 				page={page}
 				setPage={setPage}
-				pages={pages}
+				pageSize={pageSize}
+				dataCount={realSize}
 			/>
 			{selectedRow ? <ProfileInfo 
 				selectedRow={selectedRow}

@@ -3,4 +3,14 @@ table {
     height: 500px;
     border: 2px solid black;
     margin: 25px auto;
+
+    tr {
+        height: 30px;
+    }
+
+    tbody {
+        tr.selected-row {
+            background: rgba(128, 55, 55, 0.5);
+        }
+    }
 }
