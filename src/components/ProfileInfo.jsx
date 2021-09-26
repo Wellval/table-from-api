@@ -11,7 +11,7 @@ export const ProfileInfo = ({ selectedRow }) => {
     return <div className="profile-info__wrapper">
         <h2>Profile Info:</h2>
         {
-            Object.keys(infoObj).map(key => <p>{key}: {infoObj[key]}</p>)
+            Object.keys(infoObj).map(key => <p><b>{key}</b>: {infoObj[key]}</p>)
         }
     </div>
 }

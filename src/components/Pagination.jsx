@@ -40,13 +40,13 @@ export const Pagination = ({ page, setPage, pageSize, dataCount }) => {
                 className="prev-button"
                 onClick={() => page > 0 && changePage(page - 1)}
             >
-                prev
+                ←
             </button>
             {renderPages()}
             <button
                 className="next-button"
                 onClick={() => page < pagesCount - 1 && changePage(page + 1)}
-            >next</button>
+            >→</button>
         </div>
     )
 }
