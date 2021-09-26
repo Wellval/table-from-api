@@ -66,7 +66,7 @@ function App() {
 		if (selectedRow) {
 			setShowInfo(data.filter(e => e.firstName === selectedRow.firstName).length > 0);
 		}
-	}, [page, sorts, filters, list]);
+	}, [page, sorts, filters, list, selectedRow]);
 
 	return (
 		<div className="App">
