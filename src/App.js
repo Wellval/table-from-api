@@ -16,6 +16,7 @@ function App() {
 	const [filters, setFilters] = useState({});
 	const [sorts, setSorts] = useState({});
 	const [page, setPage] = useState(0);
+	const [showInfo, setShowInfo] = useState(false);
 
 	const { list } = useSelector(state => state.tableData);
 
@@ -62,6 +63,9 @@ function App() {
 
 		setPage(newPage);
 		setCurrentData(data);
+		if (selectedRow) {
+			setShowInfo(data.filter(e => e.firstName === selectedRow.firstName).length > 0);
+		}
 	}, [page, sorts, filters, list]);
 
 	return (
@@ -83,15 +87,17 @@ function App() {
 				currentData={currentData}
 				selectRow={selectRow}
 				selectedRow={selectedRow}
+				setShowInfo={setShowInfo}
 			/>
-			<Pagination 
+			<Pagination
 				page={page}
 				setPage={setPage}
 				pageSize={pageSize}
 				dataCount={realSize}
 			/>
-			{selectedRow ? <ProfileInfo 
+			{selectedRow && showInfo ? <ProfileInfo
 				selectedRow={selectedRow}
+				currentData={currentData}
 			/> : ''}
 		</div>
 	);

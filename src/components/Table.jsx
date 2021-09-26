@@ -1,6 +1,6 @@
 import { columns } from "../constants";
 
-export const Table = ({ sorts, setSorts, currentData, selectRow, selectedRow }) => {
+export const Table = ({ sorts, setSorts, currentData, selectRow, selectedRow, setShowInfo }) => {
 
     return <table>
         <thead>
@@ -13,13 +13,14 @@ export const Table = ({ sorts, setSorts, currentData, selectRow, selectedRow }) 
             </tr>
         </thead>
         <tbody>
-            {currentData.map(obj => <tr 
+            {currentData.map(obj => <tr
                 key={obj.id + obj.firstName}
-                className={obj.id === selectedRow?.id ? "selected-row" : ""}
+                className={obj.firstName === selectedRow?.firstName ? "selected-row" : ""}
                 onClick={() => {
                     selectRow(obj);
+                    setShowInfo(currentData.filter(e => e.firstName === obj.firstName).length > 0)
                 }}
-                >
+            >
                 {Object.keys(columns).map(x => <td key={x}>{obj[x]}</td>)}
             </tr>)}
         </tbody>

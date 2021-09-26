@@ -7,11 +7,11 @@ export const ProfileInfo = ({ selectedRow }) => {
         'State': selectedRow.adress.state,
         'Index': selectedRow.adress.zip,
     }
-    
+
     return <div className="profile-info__wrapper">
         <h2>Profile Info:</h2>
         {
-            Object.keys(infoObj).map(key => <p><b>{key}</b>: {infoObj[key]}</p>)
+            Object.keys(infoObj).map(key => <p key={key}><b>{key}</b>: {infoObj[key]}</p>)
         }
     </div>
 }
