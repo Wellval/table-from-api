@@ -19,9 +19,7 @@ export const DropDown = ({ list, filters, setFilters }) => {
     });
 
     let states = new Set();
-    list.map(obj => {
-        states.add(obj.adress.state)
-    })
+    list.map(obj => states.add(obj.adress.state))
 
     return (
         <div ref={refEl} className="dd-wrapper">

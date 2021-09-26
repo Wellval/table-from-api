@@ -7,6 +7,8 @@ import { requestTableData } from "./redux/actions/tableData";
 import { columns, pageSize } from './constants';
 import { SearchBar } from './components/SearchBar';
 import { DropDown } from './components/DropDown';
+import { Pagination } from './components/Pagination';
+import { ProfileInfo } from './components/ProfileInfo';
 
 function App() {
 	const dispatch = useDispatch();
@@ -18,6 +20,8 @@ function App() {
 	const { list } = useSelector(state => state.tableData);
 
 	const [currentData, setCurrentData] = useState([]);
+	const [pages, setPages] = useState(Array.apply(null, Array(Math.ceil(list.length / 20))).map(function (x, i) { return i; }));
+	const [selectedRow, selectRow] = useState(null);
 
 	useEffect(() => {
 		dispatch(requestTableData());
@@ -46,9 +50,10 @@ function App() {
 			}
 		}
 
-		data = _.orderBy(data, Object.keys(sorts), Object.keys(sorts).map(x => sorts[x] ? 'asc' : 'desc'))
+		data = _.orderBy(data, Object.keys(sorts), Object.keys(sorts).map(x => sorts[x] ? 'asc' : 'desc'));
+		setPages(Array.apply(null, Array(Math.ceil(data.length / 20))).map(function (x, i) { return i; }));
 
-		if (newPage * pageSize > data.length) {
+		if (newPage * pageSize >= data.length) {
 			newPage = 0;
 		}
 
@@ -57,6 +62,7 @@ function App() {
 		setPage(newPage);
 		setCurrentData(data);
 	}, [page, sorts, filters, list]);
+
 
 	return (
 		<div className="App">
@@ -75,7 +81,17 @@ function App() {
 				sorts={sorts}
 				setSorts={setSorts}
 				currentData={currentData}
+				selectRow={selectRow}
+				selectedRow={selectedRow}
 			/>
+			<Pagination 
+				page={page}
+				setPage={setPage}
+				pages={pages}
+			/>
+			{selectedRow ? <ProfileInfo 
+				selectedRow={selectedRow}
+			/> : ''}
 		</div>
 	);
 }
