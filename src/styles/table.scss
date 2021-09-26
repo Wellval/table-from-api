@@ -1,6 +1,6 @@
 table {
     width: 70%;
-    height: 500px;
+    height: auto;
     border: 2px solid black;
     margin: 25px auto;
 
@@ -13,4 +13,8 @@ table {
             background: rgba(128, 55, 55, 0.5);
         }
     }
+}
+
+thead td {
+    cursor: pointer;
 }

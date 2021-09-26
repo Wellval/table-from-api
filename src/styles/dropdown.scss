@@ -7,14 +7,19 @@
   position: absolute;
   right: 0;
 
-  button {
+  button, .dd-list-item, .dd-list-item-active {
     cursor: pointer;
     height: 60px;
     border: none;
     background-color: rgb(128, 55, 55);
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(225, 225, 225, 0.5);
     font-size: 18px;
     letter-spacing: 2px;
+  }
+
+  .dd-list-item-active {
+    background-color: rgb(201, 201, 201);
+    color: rgb(128, 55, 55);
   }
 }
 

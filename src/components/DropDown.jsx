@@ -31,9 +31,14 @@ export const DropDown = ({ list, filters, setFilters }) => {
                     {
                         Array.from(states).map(state => <button
                             type="button"
-                            className="dd-list-item"
+                            className={filters.state === state ? "dd-list-item-active" : "dd-list-item"}
                             value={state}
-                            onClick={e => setFilters({ ...filters, state: e.target.value })}
+                            onClick={e => {
+                                if (filters.state === e.target.value) {
+                                    setFilters({ ...filters, state: null })
+                                    console.log(filters)
+                                } else setFilters({ ...filters, state: e.target.value });
+                            }}
                         >{state}
                         </button>)
                     }

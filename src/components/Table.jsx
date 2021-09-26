@@ -5,8 +5,10 @@ export const Table = ({ sorts, setSorts, currentData, selectRow, selectedRow }) 
     return <table>
         <thead>
             <tr>
-                {Object.keys(columns).map(x => <td key={x}>
-                    {columns[x]} <span onClick={() => setSorts({ [x]: sorts[x] !== undefined ? !sorts[x] : true })}>{!sorts[x] ? '▲' : '▼'}</span>
+                {Object.keys(columns).map(x => <td
+                    onClick={() => setSorts({ [x]: sorts[x] !== undefined ? !sorts[x] : true })}
+                    key={x}>
+                    {columns[x]} <span >{!sorts[x] ? '▲' : '▼'}</span>
                 </td>)}
             </tr>
         </thead>
